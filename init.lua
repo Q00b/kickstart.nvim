@@ -54,9 +54,9 @@ vim.cmd.hi 'Character ctermfg=NONE ctermbg=NONE cterm=NONE'
 
 vim.cmd.hi 'StatusLineTerm ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'StatusLineTermNC ctermfg=NONE ctermbg=NONE cterm=NONE'
-vim.cmd.hi 'Pmenu ctermfg=NONE ctermbg=NONE cterm=NONE'
-vim.cmd.hi 'PmenuSel ctermfg=NONE ctermbg=NONE cterm=NONE'
-vim.cmd.hi 'PmenuSbar ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Pmenu ctermfg=black ctermbg=grey cterm=NONE'
+vim.cmd.hi 'PmenuSel ctermfg=black ctermbg=yellow cterm=NONE'
+vim.cmd.hi 'PmenuSbar ctermfg=white ctermbg=blue cterm=NONE'
 vim.cmd.hi 'PmenuThumb ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'ToolbarLine ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'ToolbarButton ctermfg=NONE ctermbg=NONE cterm=NONE'
@@ -106,7 +106,7 @@ vim.opt.scrolloff = 10
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 900
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '⎵' }
 vim.opt.breakindent = false
 vim.opt.autoindent = false
@@ -446,6 +446,7 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
+        phpactor = {},
         -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
