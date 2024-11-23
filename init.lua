@@ -13,15 +13,15 @@ vim.o.fillchars = 'vert:|'
 vim.cmd.hi 'MatchParen ctermbg=cyan term=NONE cterm=NONE'
 
 vim.cmd.hi 'CursorLine ctermbg=230 term=NONE cterm=NONE'
-vim.cmd.hi 'CursorLineNr ctermfg=NONE ctermbg=230 cterm=NONE'
+vim.cmd.hi 'CursorLineNr ctermfg=black ctermbg=230 cterm=bold'
 vim.cmd.hi 'Cursor guifg=black guibg=cyan'
 --vim.cmd.hi 'CursorColumn ctermfg=NONE ctermbg=NONE cterm=NONE'
-vim.cmd.hi 'StatusLine   ctermbg=green ctermfg=NONE cterm=NONE'
+vim.cmd.hi 'StatusLine   ctermbg=darkgreen ctermfg=white cterm=NONE'
 vim.cmd.hi 'StatusLineNC ctermbg=lightgray ctermfg=black cterm=NONE'
 vim.cmd.hi 'TabLine ctermfg=231 ctermbg=red cterm=NONE'
 vim.cmd.hi 'TabLineFill ctermfg=231 ctermbg=red cterm=NONE'
 vim.cmd.hi 'TabLineSel ctermfg=231 ctermbg=darkred cterm=NONE'
-vim.cmd.hi 'LineNr ctermfg=grey ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'LineNr ctermfg=black ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'Visual ctermfg=NONE ctermbg=cyan cterm=NONE'
 vim.cmd.hi 'Search ctermfg=NONE ctermbg=yellow cterm=NONE'
 
@@ -166,7 +166,7 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-      numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
+      numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
     },
   },
 
