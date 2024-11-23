@@ -21,7 +21,7 @@ vim.cmd.hi 'StatusLineNC ctermbg=lightgray ctermfg=black cterm=NONE'
 vim.cmd.hi 'TabLine ctermfg=231 ctermbg=red cterm=NONE'
 vim.cmd.hi 'TabLineFill ctermfg=231 ctermbg=red cterm=NONE'
 vim.cmd.hi 'TabLineSel ctermfg=231 ctermbg=darkred cterm=NONE'
-vim.cmd.hi 'LineNr ctermfg=black ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'LineNr ctermfg=darkgray ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'Visual ctermfg=NONE ctermbg=cyan cterm=NONE'
 vim.cmd.hi 'Search ctermfg=NONE ctermbg=yellow cterm=NONE'
 
