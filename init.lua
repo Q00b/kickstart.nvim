@@ -1,201 +1,135 @@
---[[
-
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-========                                    .-----.          ========
-========         .----------------------.   | === |          ========
-========         |.-""""""""""""""""""-.|   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||   KICKSTART.NVIM   ||   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||                    ||   |-----|          ========
-========         ||:Tutor              ||   |:::::|          ========
-========         |'-..................-'|   |____o|          ========
-========         `"")----------------(""`   ___________      ========
-========        /::::::::::|  |::::::::::\  \ no mouse \     ========
-========       /:::========|  |==hjkl==:::\  \ required \    ========
-========      '""""""""""""'  '""""""""""""'  '""""""""""'   ========
-========                                                     ========
-=====================================================================
-=====================================================================
-
-What is Kickstart?
-
-  Kickstart.nvim is *not* a distribution.
-
-  Kickstart.nvim is a starting point for your own configuration.
-    The goal is that you can read every line of code, top-to-bottom, understand
-    what your configuration is doing, and modify it to suit your needs.
-
-    Once you've done that, you can start exploring, configuring and tinkering to
-    make Neovim your own! That might mean leaving Kickstart just the way it is for a while
-    or immediately breaking it into modular pieces. It's up to you!
-
-    If you don't know anything about Lua, I recommend taking some time to read through
-    a guide. One possible example which will only take 10-15 minutes:
-      - https://learnxinyminutes.com/docs/lua/
-
-    After understanding a bit more about Lua, you can use `:help lua-guide` as a
-    reference for how Neovim integrates Lua.
-    - :help lua-guide
-    - (or HTML version): https://neovim.io/doc/user/lua-guide.html
-
-Kickstart Guide:
-
-  TODO: The very first thing you should do is to run the command `:Tutor` in Neovim.
-
-    If you don't know what this means, type the following:
-      - <escape key>
-      - :
-      - Tutor
-      - <enter key>
-
-    (If you already know the Neovim basics, you can skip this step.)
-
-  Once you've completed that, you can continue working through **AND READING** the rest
-  of the kickstart init.lua.
-
-  Next, run AND READ `:help`.
-    This will open up a help window with some basic information
-    about reading, navigating and searching the builtin help documentation.
-
-    This should be the first place you go to look when you're stuck or confused
-    with something. It's one of my favorite Neovim features.
-
-    MOST IMPORTANTLY, we provide a keymap "<space>sh" to [s]earch the [h]elp documentation,
-    which is very useful when you're not exactly sure of what you're looking for.
-
-  I have left several `:help X` comments throughout the init.lua
-    These are hints about where to find more information about the relevant settings,
-    plugins or Neovim features used in Kickstart.
-
-   NOTE: Look for lines like this
-
-    Throughout the file. These are for you, the reader, to help you understand what is happening.
-    Feel free to delete them once you know what you're doing, but they should serve as a guide
-    for when you are first encountering a few different constructs in your Neovim config.
-
-If you experience any errors while trying to install kickstart, run `:checkhealth` for more info.
-
-I hope you enjoy your Neovim journey,
-- TJ
-
-P.S. You can delete this when you're done too. It's your config now! :)
---]]
-
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
--- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
+vim.wo.number = true
+vim.wo.relativenumber = true
+vim.wo.wrap = false
+vim.wo.cursorline = true
 
--- Make line numbers default
-vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.o.fillchars = 'vert:|'
 
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.cmd.hi 'MatchParen ctermbg=blue term=NONE cterm=NONE'
 
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
+vim.cmd.hi 'CursorLine ctermbg=230 term=NONE cterm=NONE'
+vim.cmd.hi 'CursorLineNr ctermfg=NONE ctermbg=230 cterm=NONE'
+vim.cmd.hi 'Cursor guifg=black guibg=cyan'
+--vim.cmd.hi 'CursorColumn ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'StatusLine   ctermbg=231 ctermfg=40'
+vim.cmd.hi 'StatusLineNC ctermbg=40 ctermfg=194'
+vim.cmd.hi 'TabLine ctermfg=231 ctermbg=red cterm=NONE'
+vim.cmd.hi 'TabLineFill ctermfg=231 ctermbg=red cterm=NONE'
+vim.cmd.hi 'TabLineSel ctermfg=231 ctermbg=darkred cterm=NONE'
+vim.cmd.hi 'LineNr ctermfg=grey ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Visual ctermfg=NONE ctermbg=cyan cterm=NONE'
+vim.cmd.hi 'Search ctermfg=NONE ctermbg=yellow cterm=NONE'
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
+vim.cmd.hi 'Comment ctermbg=NONE ctermfg=grey'
 
--- Enable break indent
-vim.opt.breakindent = true
+vim.cmd.hi 'Normal ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Statement ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Repeat ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'String ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Number ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Operator ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Constant ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Conditional ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Function ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Todo ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Structure ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'SpecialChar ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Identifier ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Label ctermfg=NONE ctermbg=NONE cterm=NONE'
 
--- Save undo history
-vim.opt.undofile = true
+vim.cmd.hi 'Delimiter ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Float ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Type ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Define ctermfg=NONE ctermbg=NONE cterm=NONE'
 
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+vim.cmd.hi 'NonText ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'SpecialKey ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'VertSplit ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Character ctermfg=NONE ctermbg=NONE cterm=NONE'
+
+vim.cmd.hi 'StatusLineTerm ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'StatusLineTermNC ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Pmenu ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'PmenuSel ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'PmenuSbar ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'PmenuThumb ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'ToolbarLine ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'ToolbarButton ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'NonText ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'SpecialKey ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Folded ctermfg=darkred ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'VisualNOS ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'FoldColumn ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'QuickFixLine ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'SignColumn ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Underlined ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Error ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'ErrorMsg ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'ModeMsg ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'WarningMsg ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'MoreMsg ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Question ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Todo ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'IncSearch ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'WildMenu ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'ColorColumn ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'debugPC ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'debugBreakpoint ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'SpellBad ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'SpellCap ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'SpellLocal ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'SpellRare ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Statement ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Constant ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'PreProc ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Type ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Special ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Directory ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Conceal ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Ignore ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Title ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'DiffAdd ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'DiffChange ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'DiffText ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'DiffDelete ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'String ctermfg=NONE ctermbg=NONE cterm=NONE'
+
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
--- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
-
--- Decrease update time
-vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
-
--- Configure how new splits should be opened
+vim.opt.mouse = ''
+vim.opt.scrolloff = 10
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '⎵' }
+vim.opt.breakindent = false
+vim.opt.autoindent = false
+vim.opt.smartindent = false
+vim.opt.cindent = false
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.smarttab = false
 
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
--- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
-
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
--- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
+vim.keymap.set('n', '<C-c>', ':q<CR>', { desc = 'Close' })
+vim.keymap.set('n', '<C-t>', ':tabnew<CR>', { desc = 'Open new tab' })
+vim.keymap.set('n', 'q', '<nop>', { desc = 'Disable q' })
+vim.keymap.set('n', 'Q', '<nop>', { desc = 'Disable Q' })
+vim.keymap.set('n', '<up>', '<nop>', { desc = 'Disable Arrow key UP' })
+vim.keymap.set('n', '<right>', '<nop>', { desc = 'Disable Arrow key RIGHT' })
+vim.keymap.set('n', '<down>', '<nop>', { desc = 'Disable Arrow key DOWN' })
+vim.keymap.set('n', '<left>', '<nop>', { desc = 'Disable Arrow key LEFT' })
 
 -- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
@@ -205,7 +139,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -216,32 +149,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
--- [[ Configure and install plugins ]]
---
---  To check the current status of your plugins, run
---    :Lazy
---
---  You can press `?` in this menu for help. Use `:q` to close the window
---
---  To update plugins you can run
---    :Lazy update
---
--- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-
-  -- NOTE: Plugins can also be added by using a table,
-  -- with the first argument being the link and the following
-  -- keys can be used to configure plugin behavior/loading/etc.
-  --
-  -- Use `opts = {}` to force a plugin to be loaded.
-  --
-
-  -- Here is a more advanced example where we pass configuration
-  -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
-  --    require('gitsigns').setup({ ... })
-  --
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -253,84 +161,10 @@ require('lazy').setup({
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
+      signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+      numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
     },
   },
-
-  -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
-  --
-  -- This is often very useful to both group configuration, as well as handle
-  -- lazy loading plugins that don't need to be loaded immediately at startup.
-  --
-  -- For example, in the following configuration, we use:
-  --  event = 'VimEnter'
-  --
-  -- which loads which-key before all the UI elements are loaded. Events can be
-  -- normal autocommands events (`:help autocmd-events`).
-  --
-  -- Then, because we use the `config` key, the configuration only runs
-  -- after the plugin has been loaded:
-  --  config = function() ... end
-
-  { -- Useful plugin to show you pending keybinds.
-    'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    opts = {
-      icons = {
-        -- set icon mappings to true if you have a Nerd Font
-        mappings = vim.g.have_nerd_font,
-        -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
-        -- default which-key.nvim defined Nerd Font icons, otherwise define a string table
-        keys = vim.g.have_nerd_font and {} or {
-          Up = '<Up> ',
-          Down = '<Down> ',
-          Left = '<Left> ',
-          Right = '<Right> ',
-          C = '<C-…> ',
-          M = '<M-…> ',
-          D = '<D-…> ',
-          S = '<S-…> ',
-          CR = '<CR> ',
-          Esc = '<Esc> ',
-          ScrollWheelDown = '<ScrollWheelDown> ',
-          ScrollWheelUp = '<ScrollWheelUp> ',
-          NL = '<NL> ',
-          BS = '<BS> ',
-          Space = '<Space> ',
-          Tab = '<Tab> ',
-          F1 = '<F1>',
-          F2 = '<F2>',
-          F3 = '<F3>',
-          F4 = '<F4>',
-          F5 = '<F5>',
-          F6 = '<F6>',
-          F7 = '<F7>',
-          F8 = '<F8>',
-          F9 = '<F9>',
-          F10 = '<F10>',
-          F11 = '<F11>',
-          F12 = '<F12>',
-        },
-      },
-
-      -- Document existing key chains
-      spec = {
-        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-        { '<leader>d', group = '[D]ocument' },
-        { '<leader>r', group = '[R]ename' },
-        { '<leader>s', group = '[S]earch' },
-        { '<leader>w', group = '[W]orkspace' },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-      },
-    },
-  },
-
-  -- NOTE: Plugins can specify dependencies.
-  --
-  -- The dependencies are proper plugin specifications as well - anything
-  -- you do for a plugin at the top level, you can do for a dependency.
-  --
-  -- Use the `dependencies` key to specify the dependencies of a particular plugin
 
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -357,10 +191,6 @@ require('lazy').setup({
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
-      -- Telescope is a fuzzy finder that comes with a lot of different things that
-      -- it can fuzzy find! It's more than just a "file finder", it can search
-      -- many different aspects of Neovim, your workspace, LSP, and more!
-      --
       -- The easiest way to use Telescope, is to start by doing something like:
       --  :Telescope help_tags
       --
@@ -372,10 +202,6 @@ require('lazy').setup({
       --  - Insert mode: <c-/>
       --  - Normal mode: ?
       --
-      -- This opens a window that shows you all of the keymaps for the current
-      -- Telescope picker. This is really useful to discover what Telescope can
-      -- do as well as how to actually do it!
-
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
@@ -553,6 +379,7 @@ require('lazy').setup({
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
+          --[[
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -575,6 +402,8 @@ require('lazy').setup({
               end,
             })
           end
+          ]]
+          --
 
           -- The following code creates a keymap to toggle inlay hints in your
           -- code, if the language server you are using supports them
@@ -834,26 +663,27 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
-
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
-    end,
-  },
-
+  --  { -- You can easily change to a different colorscheme.
+  --    -- Change the name of the colorscheme plugin below, and then
+  --    -- change the command in the config to whatever the name of that colorscheme is.
+  --    --
+  --    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  --    'folke/tokyonight.nvim',
+  --    priority = 1000, -- Make sure to load this before all the other start plugins.
+  --    init = function()
+  --      -- Load the colorscheme here.
+  --      -- Like many other themes, this one has different styles, and you could load
+  --      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  --      --vim.cmd.colorscheme 'tokyonight-night'
+  --      --vim.cmd.colorscheme 'default'
+  --
+  --      -- You can configure highlights by doing something like:
+  --      --vim.cmd.hi 'Comment gui=none'
+  --    end,
+  --  },
+  --
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  --{ 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
@@ -896,7 +726,6 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
@@ -965,6 +794,3 @@ require('lazy').setup({
     },
   },
 })
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
