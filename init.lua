@@ -10,14 +10,14 @@ vim.wo.cursorline = true
 
 vim.o.fillchars = 'vert:|'
 
-vim.cmd.hi 'MatchParen ctermbg=blue term=NONE cterm=NONE'
+vim.cmd.hi 'MatchParen ctermbg=cyan term=NONE cterm=NONE'
 
 vim.cmd.hi 'CursorLine ctermbg=230 term=NONE cterm=NONE'
 vim.cmd.hi 'CursorLineNr ctermfg=NONE ctermbg=230 cterm=NONE'
 vim.cmd.hi 'Cursor guifg=black guibg=cyan'
 --vim.cmd.hi 'CursorColumn ctermfg=NONE ctermbg=NONE cterm=NONE'
-vim.cmd.hi 'StatusLine   ctermbg=231 ctermfg=40'
-vim.cmd.hi 'StatusLineNC ctermbg=40 ctermfg=194'
+vim.cmd.hi 'StatusLine   ctermbg=green ctermfg=NONE cterm=NONE'
+vim.cmd.hi 'StatusLineNC ctermbg=lightgray ctermfg=black cterm=NONE'
 vim.cmd.hi 'TabLine ctermfg=231 ctermbg=red cterm=NONE'
 vim.cmd.hi 'TabLineFill ctermfg=231 ctermbg=red cterm=NONE'
 vim.cmd.hi 'TabLineSel ctermfg=231 ctermbg=darkred cterm=NONE'
@@ -54,10 +54,12 @@ vim.cmd.hi 'Character ctermfg=NONE ctermbg=NONE cterm=NONE'
 
 vim.cmd.hi 'StatusLineTerm ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'StatusLineTermNC ctermfg=NONE ctermbg=NONE cterm=NONE'
-vim.cmd.hi 'Pmenu ctermfg=black ctermbg=grey cterm=NONE'
+vim.cmd.hi 'PmenuExtra ctermfg=black ctermbg=lightgray cterm=NONE'
+vim.cmd.hi 'PmenuExtraSel ctermfg=black ctermbg=lightgray cterm=NONE'
+vim.cmd.hi 'Pmenu ctermfg=black ctermbg=lightgray cterm=NONE'
 vim.cmd.hi 'PmenuSel ctermfg=black ctermbg=yellow cterm=NONE'
-vim.cmd.hi 'PmenuSbar ctermfg=white ctermbg=blue cterm=NONE'
-vim.cmd.hi 'PmenuThumb ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'PmenuSbar ctermfg=white ctermbg=grey cterm=NONE'
+vim.cmd.hi 'PmenuThumb ctermfg=NONE ctermbg=darkgray cterm=NONE'
 vim.cmd.hi 'ToolbarLine ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'ToolbarButton ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'NonText ctermfg=NONE ctermbg=NONE cterm=NONE'
@@ -73,7 +75,6 @@ vim.cmd.hi 'ErrorMsg ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'ModeMsg ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'WarningMsg ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'MoreMsg ctermfg=NONE ctermbg=NONE cterm=NONE'
-vim.cmd.hi 'Question ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'Todo ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'IncSearch ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'WildMenu ctermfg=NONE ctermbg=NONE cterm=NONE'
@@ -98,6 +99,9 @@ vim.cmd.hi 'DiffChange ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'DiffText ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'DiffDelete ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'String ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'Question ctermfg=NONE ctermbg=red cterm=NONE'
+vim.cmd.hi 'QuickFixLine ctermfg=NONE ctermbg=red cterm=NONE'
+vim.cmd.hi 'FloatBorder ctermfg=NONE ctermbg=red cterm=NONE'
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -704,12 +708,18 @@ require('lazy').setup({
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
+      --[[
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
       local statusline = require 'mini.statusline'
       -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      statusline.setup {
+        use_icons = vim.g.have_nerd_font,
+        content = {
+          inactive = nil,
+        },
+      }
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
@@ -718,6 +728,8 @@ require('lazy').setup({
       statusline.section_location = function()
         return '%2l:%-2v'
       end
+      ]]
+      --
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
