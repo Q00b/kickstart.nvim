@@ -76,7 +76,7 @@ vim.cmd.hi 'ModeMsg ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'WarningMsg ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'MoreMsg ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'Todo ctermfg=NONE ctermbg=NONE cterm=NONE'
-vim.cmd.hi 'IncSearch ctermfg=NONE ctermbg=NONE cterm=NONE'
+vim.cmd.hi 'IncSearch ctermfg=NONE ctermbg=yellow cterm=NONE'
 vim.cmd.hi 'WildMenu ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'ColorColumn ctermfg=NONE ctermbg=NONE cterm=NONE'
 vim.cmd.hi 'debugPC ctermfg=NONE ctermbg=NONE cterm=NONE'
@@ -119,6 +119,7 @@ vim.opt.cindent = false
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smarttab = false
+vim.opt.incsearch = false
 
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
