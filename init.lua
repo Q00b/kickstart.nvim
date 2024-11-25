@@ -116,6 +116,7 @@ vim.opt.breakindent = false
 vim.opt.autoindent = false
 vim.opt.smartindent = false
 vim.opt.cindent = false
+vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smarttab = false
